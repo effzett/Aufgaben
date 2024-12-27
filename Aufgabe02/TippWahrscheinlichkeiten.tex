@@ -1,0 +1,122 @@
+
+\documentclass[paper=a4,notitlepage,parskip=half,plainheadsepline,12pt]{scrartcl}
+ 
+\usepackage{scrlayer-scrpage} 
+% \usepackage{ngerman}
+% \usepackage{graphicx}
+% \usepackage{float}
+% \usepackage[T1]{fontenc}
+% \usepackage[utf8]{inputenc}
+% \usepackage{pifont}
+% \usepackage{amsmath}
+% \usepackage[german]{varioref}
+\usepackage[text={6.8in,9.6in},top=0.8in,centering]{geometry}
+\usepackage{datetime2}
+\usepackage{array,multirow,tabularx}
+% \usepackage{listingsutf8}
+\usepackage[table,svgnames,dvipsnames]{xcolor}
+% \usepackage[most,breakable,skins,listingsutf8]{tcolorbox}
+% %\tcbuselibrary{listingsutf8}
+\usepackage[color=blue!90,scale=0.8,placement=bottom,vshift=1.2cm]{background}
+%\usepackage{array}
+% \usepackage{physics}
+\usepackage{fancyvrb}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+
+%\backgroundsetup{contents={Version vom \today}}
+\backgroundsetup{contents={Version vom \today}}
+%\pagestyle{empty}
+
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\ihead{Fachinformatiker Anwendungsentwickler (1.~Ausbildungsjahr~2020)}
+\chead{}
+\ohead{Tipp: Aufgabe2}
+\ifoot{Frank Zimmermann}
+\cfoot{SVLFG}
+\ofoot{}
+\ofoot{\pagemark}
+
+\graphicspath{{./jpg/}}
+\DeclareGraphicsExtensions{.jpg,.eps,.png}
+%\usepackage{courier}
+
+
+
+% Wenn pdflatex benutzt wird sollen die 
+% installierten! frutiger-Fonts verwendet werden
+% Ansonsten die TeX-eigenen cmbright
+\ifpdfoutput %
+{%
+\usepackage[scaled=0.90]{frutiger}
+\renewcommand\familydefault{\sfdefault}
+%\DeclareFixedFont\ott{T1}{phv}{mc}{n}{10pt
+}%
+{%
+\usepackage{cmbright}
+}%
+
+\newfont{\lf}{svlfg scaled 2000}%
+\VerbatimFootnotes
+\begin{document}
+
+
+
+\begin{center}
+{\lf K}\hfill {\LARGE Tipp für Aufgabe 2} \hfill {\lf K}\\
+\rule{\textwidth}{2pt}
+\end{center}
+
+In der Aufgabe~2 soll ein Buchstabe aus einer Verteilung von verschiedenen Buchstaben gewählt werden.
+Dabei soll die Häufigkeit der vorkommenden Buchstaben berücksichtigt werden, aber ansonsten der ausgewählte Buchstabe zufällig gewählt werden.
+
+Eine Lösung für diese Aufgabe, einerseits die Häufigkeiten zu berücksichtigen und andererseits aber einen Buchstaben zufällig auszuwählen, sei hier kurz skizziert.
+
+Nehmen wir an wir hätten 3 verschiedene Buchstaben $b_1, b_2$ und $b_3$ mit den Häufikeiten $h_1, h_2$ und $h_3$.
+In der Datenstruktur--Grafik wären das z.b. \fcolorbox{black}{blue!20}{m}, \fcolorbox{black}{red!20}{t} und \fcolorbox{black}{green!20}{s} mit den Häufigkeiten \fcolorbox{black}{blue!20}{12}, \fcolorbox{black}{red!20}{3} und \fcolorbox{black}{green!20}{7}. 
+
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+\draw [ step =1 cm , gray , very thin ] ( 0 , 0) grid
+(15 ,15) ;
+\filldraw [fill=blue!20](0,0) rectangle (1,12);
+\filldraw [fill=red!20](1,0) rectangle (2,3);
+\filldraw [fill=green!20](2,0) rectangle (3,7);
+\draw (0.5,6) node [rotate=90]{m};
+\draw (1.5,1.5) node [rotate=90]{t};
+\draw (2.5,3.5) node [rotate=90]{s};
+\foreach \y/\ytext in {1,2,3,4,5,6,7,8,9,10,11,12} \draw (-5pt,\y) -- (-1pt,\y) node[anchor=east] {$\ytext$};
+\end{tikzpicture}
+\end{center}
+
+Wenn man die Häufigkeiten als Intervalle betrachtet und nebeneinander anordnet, bekommt man ein 3--geteiltes Intervall von der Länge 22.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+\draw [ step =1 cm , gray , very thin ] ( 0 , 0) grid
+(25 ,1) ;
+\filldraw [fill=blue!20](0,0) rectangle (12,1);
+\filldraw [fill=red!20](12,0) rectangle (15,1);
+\filldraw [fill=green!20](15,0) rectangle (22,1);
+\draw (6,0.5) node {m};
+\draw (13.5,0.5) node {t};
+\draw (18.5,0.5) node {s};
+\draw[->,red,line width=2pt] (5,2) -- (13,2)   -- (13,1);
+\draw (3.5,2) node [red]{random};
+\draw [red, line width = 2pt](0,0) -- (0,2);
+\draw [red, line width = 2pt](22,0) -- (22,2);
+\foreach \x/\xtext in {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25} \draw (\x ,5pt) -- (\x ,-25pt) node[anchor=north] {$\xtext$};
+\end{tikzpicture}
+\end{center}
+
+Bestimmt man nun eine Zufallszahl im Bereich $0\dots 22$ und berechnet\footnote{in Pseudo-Code z.B.
+\begin{verbatim} 
+r=random(0..22);
+i=0;
+while(Intervallende[i]<r)(i++;);
+wähle Buchstabe aus Intervall[i];
+\end{verbatim}
+}, in welches Intervall sie fällt, so hat man die Größe der Intervalle bei der Auswahl der Zufallszahl berücksichtigt. 
+\end{document}
