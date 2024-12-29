@@ -1,0 +1,31 @@
+
+Verwendete Pakete:
+- amsmath
+- array
+- babel
+- background
+- datetime2
+- float
+- fontenc
+- frutiger
+- geometry
+- graphicx
+- iftex
+- inputenc
+- listingsutf8
+- multirow
+- pgfplots
+- physics
+- pifont
+- scrlayer-scrpage
+- silence
+- snapshot
+- tabularx
+- tcolorbox
+- tikz
+- varioref
+- xcolor
+
+Nicht verwendete Pakete:
+- cmbright
+- courier
