@@ -108,15 +108,4 @@
   *{file}   {supp-pdf.mkii}{0000/00/00 v0.0}
   *{package}{epstopdf-base}{2020-01-24 v2.11}
   *{file}   {epstopdf-sys.cfg}{2010/07/13 v1.3}
-  *{file}   {Aufgabe03.png}{Graphic v0.0}
-  *{file}   {Aufgabe03Enhanced.png}{Graphic v0.0}
-  *{package}{lstlang1}    {2024/09/23 v1.10c}
-  *{package}{lstmisc}     {2024/09/23 v1.10c}
-  *{file}   {latin1.def}  {2024/02/08 v1.3d}
-  *{file}   {se-utf8.def} {2019/11/29 v1.12}
-  *{file}   {se-iso-8859-1.def}{2019/11/29 v1.12}
-  *{package}{lstlang1}    {2024/09/23 v1.10c}
-  *{file}   {latin1.def}  {2024/02/08 v1.3d}
-  *{file}   {latin1.def}  {2024/02/08 v1.3d}
-  *{file}   {latin1.def}  {2024/02/08 v1.3d}
 }
